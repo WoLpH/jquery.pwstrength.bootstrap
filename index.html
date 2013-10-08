@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Jquery.pwstrength.bootstrap by WoLpH</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/WoLpH/jquery.pwstrength.bootstrap">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/WoLpH/jquery.pwstrength.bootstrap/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/WoLpH/jquery.pwstrength.bootstrap/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Jquery.pwstrength.bootstrap</h1>
+          <p>jQueryUI Password Strength Meter</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/WoLpH">WoLpH</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1></h1>
+
+<h1>
+<a name="jquery-password-strength-meter-for-twitter-bootstrap" class="anchor" href="#jquery-password-strength-meter-for-twitter-bootstrap"><span class="octicon octicon-link"></span></a>jQuery Password Strength Meter for Twitter Bootstrap</h1>
+
+<p>The jQuery Password Strength Meter is a plugin for Twitter Bootstrap that
+provides rulesets for visualy displaying the quality of a users typed in
+password.</p>
+
+<h1>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h1>
+
+<ul>
+<li>jQuery (tested with 1.8.3)</li>
+<li>Bootstrap CSS for progress bars (tested with 2.2.2)</li>
+</ul><h1>
+<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h1>
+
+<ul>
+<li>
+<p><strong>minChar</strong>:</p>
+
+<p>Default: <code>8</code> (Integer)</p>
+
+<p>Sets the minimum required of characters for a password to not be considered
+too weak</p>
+</li>
+<li>
+<p><strong>verdicts</strong>:</p>
+
+<p>Default: <code>["Weak", "Normal", "Medium", "Strong", "Very Strong"]</code> (Array)</p>
+
+<p>The display names for the verdicts related to the progressClass</p>
+</li>
+<li>
+<p><strong>scores</strong>:</p>
+
+<p>Default: <code>[17, 26, 40, 50]</code> (Array)</p>
+
+<p>The scores used to determine what progressClass and verdicts to display</p>
+</li>
+<li>
+<p><strong>showVerdicts</strong>:</p>
+
+<p>Default: <code>true</code> (Boolean)</p>
+
+<p>Determines if the verdicts are display on the progress bar or not</p>
+</li>
+<li>
+<p><strong>viewports</strong>:</p>
+
+<p>Default: (Object)</p>
+
+<pre><code>{
+  progress: undefined,
+  verdict: undefined,
+  errors: undefined
+}
+</code></pre>
+
+<p>An object containing the viewports to use to show the elements of the
+strength meter. Each one can be a CSS selector (<code>"#progressbar"</code>) or a DOM
+node reference.</p>
+</li>
+<li>
+<p><strong>usernameField</strong>:</p>
+
+<p>Default: <code>"#username"</code> (String)</p>
+
+<p>The username field to match a password to, to ensure the user does not use
+the same value for their password</p>
+</li>
+<li>
+<p><strong>raisePower</strong>:</p>
+
+<p>Default: <code>1.4</code> (Double)</p>
+
+<p>The value used to modify the final score, allows you to tailor your results</p>
+</li>
+<li>
+<p><strong>onLoad</strong>:</p>
+
+<p>Default: <code>undefined</code> (Function)</p>
+
+<p>A callback function, fired on load of the widget</p>
+</li>
+<li>
+<p><strong>onKeyUp</strong>:</p>
+
+<p>Default: <code>undefined</code> (Function)</p>
+
+<p>A callback function, fired on key up when the user is typing</p>
+</li>
+<li>
+<p><strong>errorMessages</strong>:</p>
+
+<p>Default: (Object)</p>
+
+<pre><code>{
+  password_to_short : "The Password is too short",
+  same_as_username : "Your password cannot be the same as your username"
+}
+</code></pre>
+
+<p>An object containing error messages.  These can be overwritten for language
+purposes, and can also be added to for your custom rules.</p>
+</li>
+</ul><h1>
+<a name="adding-custom-rules" class="anchor" href="#adding-custom-rules"><span class="octicon octicon-link"></span></a>Adding Custom Rules</h1>
+
+<p>The plugin comes with the functionality to easily define your own custom rules.
+The format is as follows:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="s2">"#passwdfield"</span><span class="p">).</span><span class="nx">pwstrength</span><span class="p">(</span><span class="s2">"addRule"</span><span class="p">,</span> <span class="s2">"ruleName"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="nx">word</span><span class="p">,</span> <span class="nx">score</span><span class="p">)</span> <span class="p">{},</span> <span class="nx">rule_score</span><span class="p">,</span> <span class="nx">rule_enabled</span><span class="p">);</span>
+</pre></div>
+
+<p>Example:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="s2">"#passwdfield"</span><span class="p">).</span><span class="nx">pwstrength</span><span class="p">(</span><span class="s2">"addRule"</span><span class="p">,</span> <span class="s2">"testRule"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="nx">word</span><span class="p">,</span> <span class="nx">score</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">word</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/[a-z].[0-9]/</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">score</span><span class="p">;</span>
+<span class="p">},</span> <span class="mi">10</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+</pre></div>
+
+<h1>
+<a name="callback-functions" class="anchor" href="#callback-functions"><span class="octicon octicon-link"></span></a>Callback Functions</h1>
+
+<p>The plugin provides two callback functions, onLoad and onKeyUp.  You can use
+them like this:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">onLoad</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="nx">$</span><span class="p">(</span><span class="s1">'#messages'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">'Start typing password'</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">onKeyUp</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">$</span><span class="p">(</span><span class="nx">evt</span><span class="p">.</span><span class="nx">target</span><span class="p">).</span><span class="nx">pwstrength</span><span class="p">(</span><span class="s2">"outputErrorList"</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">':password'</span><span class="p">).</span><span class="nx">pwstrength</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
